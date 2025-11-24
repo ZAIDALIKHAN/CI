@@ -50,7 +50,7 @@ pipeline {
                         -Dsonar.sources=. \
                         -Dsonar.language=py \
                         -Dsonar.python.version=3 \
-                        -Dsonar.host.url=http://<SONAR_IP>:9000 \
+                        -Dsonar.host.url=http://98.89.31.232:9000 \
                         -Dsonar.login=$SONAR_TOKEN
                         '''
                     }
