@@ -5,7 +5,7 @@ pipeline {
         AWS_REGION = "us-east-1"
         ECR_REPO   = "realtime-python-app"
         IMAGE_TAG  = "${BUILD_NUMBER}"
-        AWS_ACCOUNT_ID = "YOUR_AWS_ACCOUNT_ID"
+        AWS_ACCOUNT_ID = "633193633631"
     }
 
     stages {
@@ -42,7 +42,7 @@ pipeline {
             steps {
                 echo "Running SonarQube analysis"
                 withSonarQubeEnv('SonarQube') {
-                    withCredentials([string(credentialsId: 'SONAR_TOKEN', variable: 'SONAR_TOKEN')]) {
+                    withCredentials([string(credentialsId: 'sonarqube', variable: 'sonarqube')]) {
                         sh '''
                         sonar-scanner \
                         -Dsonar.projectKey=realtime-python-app \
