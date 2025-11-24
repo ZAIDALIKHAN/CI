@@ -38,7 +38,7 @@ pipeline {
         }
 
 
-        stage('Code Scan - SonarQube') {
+        /*stage('Code Scan - SonarQube') {
             steps {
                 echo "Running SonarQube analysis"
                 withSonarQubeEnv('SonarQube') {
@@ -56,7 +56,29 @@ pipeline {
                     }
                 }
             }
+        }*/
+
+
+
+        stage('Code Scan - SonarQube') {
+    steps {
+        echo "Running SonarQube analysis using Docker"
+        withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_TOKEN')]) {
+            sh '''
+            docker run --rm \
+              -e SONAR_HOST_URL=http://98.89.31.232:9000 \
+              -e SONAR_LOGIN=$SONAR_TOKEN \
+              -v $(pwd):/usr/src \
+              sonarsource/sonar-scanner-cli \
+              -Dsonar.projectKey=realtime-python-app \
+              -Dsonar.sources=.
+            '''
         }
+    }
+}
+
+
+
 
         stage('Docker Image Build') {
             steps {
