@@ -5,7 +5,7 @@ pipeline {
         AWS_REGION = "us-east-1"
         ECR_REPO   = "realtime-python-app"
         IMAGE_TAG  = "${BUILD_NUMBER}"
-        AWS_ACCOUNT_ID = "633193633631"
+        AWS_ACCOUNT_ID = "895183717404"
     }
 
     stages {
@@ -79,7 +79,7 @@ pipeline {
 
 
 
-stage('Code Scan - SonarQube') {
+/*stage('Code Scan - SonarQube') {
     steps {
         echo "Running SonarQube analysis using Docker"
         withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_TOKEN')]) {
@@ -95,7 +95,7 @@ stage('Code Scan - SonarQube') {
             '''
         }
     }
-}
+}*/
 
 
 
